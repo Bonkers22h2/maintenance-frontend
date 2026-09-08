@@ -1,0 +1,22 @@
+<form (ngSubmit)="submitForm()">
+    <label>
+        Title:
+        <input type="text" [(ngModel)]="title" name="title" required>
+    </label>
+
+    <label>
+        Description:
+        <input type="text" [(ngModel)]="description" name="description" required>
+    </label>
+
+    <label>
+        Priority:
+        <select [(ngModel)]="priority" name="priority">
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+        </select>
+    </label>
+
+    <button type="submit">Create Request</button>
+</form>
