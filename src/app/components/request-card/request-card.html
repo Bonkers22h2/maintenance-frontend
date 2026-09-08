@@ -1,0 +1,8 @@
+<div class="card">
+    <h3>{{ title }}</h3>
+    <p>Status: {{ status }}</p>
+    <p>Priority: {{ priority }}</p>
+    <p *ngIf="status === 'SUBMITTED'">⚠️ New request, not yet assigned</p>
+</div>
+<img [src]="imageUrl">
+<button (click)="markAsRead()">Mark as read</button>
