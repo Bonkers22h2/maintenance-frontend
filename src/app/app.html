@@ -1,7 +1,4 @@
-<div *ngFor="let request of requests">
-    <app-request-card [title]="request.title" [status]="request.status"
-        [priority]="request.priority"></app-request-card>
-</div>
 
 <app-create-request-form></app-create-request-form>
 
+<router-outlet></router-outlet>
