@@ -12,7 +12,12 @@ import { FormsModule } from "@angular/forms";
   templateUrl: './facility-list-page.html',
 })
 export class FacilityListPage {
-  protected readonly title = signal('facility-frontend');
   private facilityService = inject(Facility);
-  facilities = this.facilityService.getFacilities();
+  facilities: any[] = [];
+
+  ngOnInit() {
+    this.facilityService.getFacilities().subscribe(data => {
+      this.facilities = data;
+    })
+  }
 }
