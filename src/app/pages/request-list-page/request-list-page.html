@@ -1,6 +1,7 @@
+
 <div *ngFor="let request of requests">
-  <a [routerLink]="['/requests', request.id]">
-    <app-request-card [title]="request.title" [status]="request.status"
-      [priority]="request.priority"></app-request-card>
-  </a>
+    <a [routerLink]="['/requests', request.id]">
+        <app-request-card [title]="request.title" [status]="request.status"
+            [priority]="request.priority"></app-request-card>
+    </a>
 </div>

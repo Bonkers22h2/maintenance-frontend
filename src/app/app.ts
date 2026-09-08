@@ -7,7 +7,7 @@ import { CreateRequestForm } from './components/create-request-form/create-reque
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RequestCard, CommonModule, CreateRequestForm],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
