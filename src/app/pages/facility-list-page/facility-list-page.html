@@ -1,0 +1,7 @@
+<div *ngFor="let facility of facilities">
+    <a [routerLink]="['/facilities', facility.id]">
+        <app-facility-card [name]="facility.name" [location]="facility.location" [facilityType]="facility.facilityType">
+
+        </app-facility-card>
+    </a>
+</div>
