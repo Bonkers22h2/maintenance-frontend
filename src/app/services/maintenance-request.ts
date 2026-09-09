@@ -9,4 +9,8 @@ export class MaintenanceRequest {
   getRequests() {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  createRequest(dto: any) {
+    return this.http.post<any>(this.apiUrl, dto);
+  }
 }

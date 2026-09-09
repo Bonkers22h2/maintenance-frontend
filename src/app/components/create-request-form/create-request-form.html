@@ -17,6 +17,7 @@
             <option value="HIGH">High</option>
         </select>
     </label>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
 
     <button type="submit">Create Request</button>
 </form>

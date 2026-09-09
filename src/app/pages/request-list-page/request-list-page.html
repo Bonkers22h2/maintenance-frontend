@@ -1,8 +1,11 @@
 <div *ngFor="let request of (maintenanceRequests$ | async)">
   <a [routerLink]="['/requests', request.id]">
     <app-request-card [title]="request.title" [status]="request.status"
-        [priority]="request.priority"></app-request-card>
+      [priority]="request.priority"></app-request-card>
   </a>
 
-  <a [routerLink]="['/facilities']">Facilities</a>
 </div>
+
+
+<a routerLink="/requests/new">+ New Request</a>
+<a [routerLink]="['/facilities']">Facilities</a>
