@@ -1,17 +1,13 @@
-import { Component, signal, inject } from '@angular/core';
-import { RequestCard } from './components/request-card/request-card';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaintenanceRequest } from './services/maintenance-request';
-import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
-import { CreateRequestForm } from './components/create-request-form/create-request-form';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, RouterLinkWithHref],
+  imports: [RouterOutlet, CommonModule, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('maintenance-frontend');
-
 }

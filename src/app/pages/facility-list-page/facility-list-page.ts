@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FacilityCard } from '../../components/facility-card/facility-card';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';

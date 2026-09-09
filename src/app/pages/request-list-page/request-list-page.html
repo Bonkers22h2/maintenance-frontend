@@ -1,5 +1,4 @@
-
-<div *ngFor="let request of requests">
+<div *ngFor="let request of maintenanceRequests">
     <a [routerLink]="['/requests', request.id]">
         <app-request-card [title]="request.title" [status]="request.status"
             [priority]="request.priority"></app-request-card>

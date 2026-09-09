@@ -1,14 +1,12 @@
-import { Service } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Service } from '@angular/core';
 
 @Service()
 export class MaintenanceRequest {
-  private requests = [
-    { id: 1, title: 'AC not cooling', status: 'SUBMITTED', priority: 'HIGH' },
-    { id: 2, title: 'Leaking faucet', status: 'ASSIGNED', priority: 'LOW' },
-    { id: 3, title: 'Flickering light', status: 'IN_PROGRESS', priority: 'MEDIUM' }
-  ];
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/api/maintenance-requests';
 
   getRequests() {
-    return this.requests;
+    return this.http.get<any[]>(this.apiUrl);
   }
 }
