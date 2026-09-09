@@ -11,4 +11,8 @@ export class Facility {
             map(response => response.content)
         );
     }
+
+    createFacility(dto: any) {
+        return this.http.post<any>(this.apiUrl, dto);
+    }
 }
