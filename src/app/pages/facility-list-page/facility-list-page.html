@@ -1,5 +1,5 @@
-<ng-container *ngIf="facilities$ | async as page">  
-    <div *ngFor="let facility of (facilities$ | async)">
+<ng-container *ngIf="facilities$ | async as facilities">
+    <div *ngFor="let facility of facilities">
         <a [routerLink]="['/facilities', facility.id]">
             <app-facility-card [name]="facility.name" [location]="facility.location"
                 [facilityType]="facility.facilityType">

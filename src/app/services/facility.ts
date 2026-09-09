@@ -12,6 +12,10 @@ export class Facility {
         );
     }
 
+    getFacilityById(id: string) {
+        return this.http.get<any>(`${this.apiUrl}/${id}`);
+    }
+
     createFacility(dto: any) {
         return this.http.post<any>(this.apiUrl, dto);
     }

@@ -1,1 +1,6 @@
-<p>Viewing facility #{{facilityId}}</p>
+<div *ngIf="facility$ | async as facility">
+    <h2>Facility name:  {{ facility.name }}</h2>
+    <h3>ID: {{ facility.id}} </h3>
+    <p>Facility Type: {{ facility.facilityType}}</p>
+    <p>Location: {{ facility.location }} </p>
+</div>
