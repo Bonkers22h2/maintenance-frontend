@@ -13,11 +13,5 @@ import { FormsModule } from "@angular/forms";
 })
 export class FacilityListPage {
   private facilityService = inject(Facility);
-  facilities: any[] = [];
-
-  ngOnInit() {
-    this.facilityService.getFacilities().subscribe(data => {
-      this.facilities = data;
-    })
-  }
+  facilities$ = this.facilityService.getFacilities();
 }
