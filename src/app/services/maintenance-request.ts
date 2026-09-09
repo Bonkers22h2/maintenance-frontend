@@ -10,6 +10,10 @@ export class MaintenanceRequest {
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  getRequestsById(id: string) {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
   createRequest(dto: any) {
     return this.http.post<any>(this.apiUrl, dto);
   }

@@ -1,1 +1,14 @@
-<p>Viewing request #{{ requestId }}</p>
+<div *ngIf="request$ | async as request">
+    <h2>{{ request.title }} </h2>
+    <h3>{{ request.id }} </h3>
+    <p>Priority: {{ request.priority }} </p>
+    <p>Description: {{ request.description }} </p>
+    <p>Created at: {{ request.createdAt }} </p>
+    <p>Due at: {{ request.dueAt }}</p>
+    <p>Status: {{request.status}} </p>
+    <p>Assigned Staff: {{request.assigned_staff_id}} </p>
+    <p>Facility: {{request.facility_id}}</p>
+    <p>Tenant: {{request.tenant_id}}</p>
+    <p>Vendor: {{request.vendor_id}}</p>
+
+</div>
