@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MaintenanceRequest } from '../../services/maintenance-request';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   imports: [RouterLink, RequestCard, CommonModule, FormsModule],
   selector: 'app-request-list-page',
@@ -12,11 +13,5 @@ import { FormsModule } from '@angular/forms';
 })
 export class RequestListPage {
   private maintenanceRequestService = inject(MaintenanceRequest);
-  maintenanceRequests: any[] = [];
-
-  ngOnInit() {
-    this.maintenanceRequestService.getRequests().subscribe(data => {
-      this.maintenanceRequests = data;
-    })
-  }
+  maintenanceRequests$ = this.maintenanceRequestService.getRequests();  
 }
