@@ -6,10 +6,10 @@
     <p>Created at: {{ request.createdAt }} </p>
     <p>Due at: {{ request.dueAt }}</p>
     <p>Status: {{request.status}} </p>
-    <p>Assigned Staff: {{request.assigned_staff_id}} </p>
-    <p>Facility: {{request.facility_id}}</p>
-    <p>Tenant: {{request.tenant_id}}</p>
-    <p>Vendor: {{request.vendor_id}}</p>
+    <p>Assigned Staff: {{ request.assignedStaffName || 'Not yet assigned' }}</p>
+    <p>Facility: {{ request.facilityName || 'Not yet assigned' }}</p>
+    <p>Tenant: {{ request.tenantName || 'Not yet assigned' }}</p>
+    <p>Vendor: {{ request.vendorName || 'Not yet assigned' }}</p>
 
     <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
         Mark as Assigned
@@ -31,6 +31,7 @@
 <h3>Status History</h3>
 <div *ngIf="histories$ | async as histories">
     <div *ngFor="let history of histories">
-        <p> <strong> {{ history.changedBy }}</strong>: {{ history.changedAt }}: <strong> {{ history.oldStatus }} </strong> -> <strong> {{ history.newStatus }} </strong> </p>
+        <p> <strong> {{ history.changedBy }}</strong>: {{ history.changedAt }}: <strong> {{ history.oldStatus }}
+            </strong> -> <strong> {{ history.newStatus }} </strong> </p>
     </div>
-</div> 
+</div>
