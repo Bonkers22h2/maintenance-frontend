@@ -17,4 +17,8 @@ export class MaintenanceRequest {
   createRequest(dto: any) {
     return this.http.post<any>(this.apiUrl, dto);
   }
+
+  updateStatus(id: string, status: string) {
+    return this.http.patch<any>(`${this.apiUrl}/${id}/status`, { status });
+  }
 }

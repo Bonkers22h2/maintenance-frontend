@@ -1,3 +1,7 @@
+<p *ngIf="maintenanceRequests$ | async as requests">
+  {{ requests.length }}
+</p>
+
 <div *ngFor="let request of (maintenanceRequests$ | async)">
   <a [routerLink]="['/requests', request.id]">
     <app-request-card [title]="request.title" [status]="request.status"

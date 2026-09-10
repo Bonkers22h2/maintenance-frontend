@@ -11,4 +11,8 @@
     <p>Tenant: {{request.tenant_id}}</p>
     <p>Vendor: {{request.vendor_id}}</p>
 
+    <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
+        Mark as Assigned
+    </button>
+
 </div>
