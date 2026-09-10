@@ -21,4 +21,12 @@ export class MaintenanceRequest {
   updateStatus(id: string, status: string) {
     return this.http.patch<any>(`${this.apiUrl}/${id}/status`, { status });
   }
+
+  getComments(requestId: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/${requestId}/comments`);
+  }
+
+  addComment(requestId: string, content: string) {
+    return this.http.post<any>(`${this.apiUrl}/${requestId}/comments`, { content });
+  }
 }

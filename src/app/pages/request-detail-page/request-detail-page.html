@@ -14,5 +14,16 @@
     <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
         Mark as Assigned
     </button>
-
 </div>
+
+<h3>Comments</h3>
+<div *ngIf="comments$ | async as comments">
+    <div *ngFor="let comment of comments">
+        <p><strong> {{ comment.authorName }}</strong>: {{comment.content}}</p>
+    </div>
+</div>
+
+<form (ngSubmit)="submitComment()">
+    <textarea [(ngModel)]="newCommentText" name="newCommentText" required></textarea>
+    <button type="submit">Post Comment</button>
+</form>
