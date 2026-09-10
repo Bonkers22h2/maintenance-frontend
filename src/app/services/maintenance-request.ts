@@ -33,4 +33,20 @@ export class MaintenanceRequest {
   getStatusHisotry(requestId: string) {
     return this.http.get<any>(`${this.apiUrl}/${requestId}/history`);
   }
+
+  uploadAttachment(requestId: string, file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(`${this.apiUrl}/${requestId}/attachments`, formData);
+  }
+
+  getAttachments(requestId: string) {
+    return this.http.get<any>(`${this.apiUrl}/${requestId}/attachments`);
+  }
+
+  getAttachmentBlob(requestId: string, attachmentId: number) {
+    return this.http.get(`${this.apiUrl}/${requestId}/attachments/${attachmentId}/download`, {
+      responseType: 'blob'
+    });
+  }
 }

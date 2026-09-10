@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MaintenanceRequest } from '../../services/maintenance-request';
 import { Auth } from '../../services/auth';
 import { FormsModule } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-request-detail-page',
@@ -25,6 +27,11 @@ export class RequestDetailPage {
 
   histories$ = this.maintenanceRequestService.getStatusHisotry(this.requestId);
 
+  selectedFile: File | null = null;
+  attachments$ = this.maintenanceRequestService.getAttachments(this.requestId);
+  private sanitizer = inject(DomSanitizer);
+  imageUrls: Map<number, any> = new Map();
+
   submitComment() {
     this.maintenanceRequestService.addComment(this.requestId, this.newCommentText).subscribe({
       next: () => {
@@ -43,6 +50,32 @@ export class RequestDetailPage {
       error: (err) => {
         console.error('Failed to update status:', err);
       }
+    });
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
+
+  uploadAttachment() {
+    if (!this.selectedFile) return;
+
+    this.maintenanceRequestService.uploadAttachment(this.requestId, this.selectedFile).subscribe({
+      next: () => {
+        this.selectedFile = null;
+        this.attachments$ = this.maintenanceRequestService.getAttachments(this.requestId);
+      },
+      error: (err) => console.error('Upload failed:', err)
+    })
+  }
+
+  loadImage(attachmentId: number) {
+    this.maintenanceRequestService.getAttachmentBlob(this.requestId, attachmentId).subscribe(blob => {
+      const url = URL.createObjectURL(blob);
+      this.imageUrls.set(attachmentId, this.sanitizer.bypassSecurityTrustUrl(url));
     });
   }
 }
