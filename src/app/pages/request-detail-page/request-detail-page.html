@@ -27,3 +27,10 @@
     <textarea [(ngModel)]="newCommentText" name="newCommentText" required></textarea>
     <button type="submit">Post Comment</button>
 </form>
+
+<h3>Status History</h3>
+<div *ngIf="histories$ | async as histories">
+    <div *ngFor="let history of histories">
+        <p> <strong> {{ history.changedBy }}</strong>: {{ history.changedAt }}: <strong> {{ history.oldStatus }} </strong> -> <strong> {{ history.newStatus }} </strong> </p>
+    </div>
+</div> 

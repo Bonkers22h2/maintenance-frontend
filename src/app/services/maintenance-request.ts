@@ -29,4 +29,8 @@ export class MaintenanceRequest {
   addComment(requestId: string, content: string) {
     return this.http.post<any>(`${this.apiUrl}/${requestId}/comments`, { content });
   }
+
+  getStatusHisotry(requestId: string) {
+    return this.http.get<any>(`${this.apiUrl}/${requestId}/history`);
+  }
 }

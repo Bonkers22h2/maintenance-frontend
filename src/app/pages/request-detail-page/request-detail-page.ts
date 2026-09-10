@@ -23,6 +23,8 @@ export class RequestDetailPage {
   comments$ = this.maintenanceRequestService.getComments(this.requestId);
   newCommentText = '';
 
+  histories$ = this.maintenanceRequestService.getStatusHisotry(this.requestId);
+
   submitComment() {
     this.maintenanceRequestService.addComment(this.requestId, this.newCommentText).subscribe({
       next: () => {

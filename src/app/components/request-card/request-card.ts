@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './request-card.html',
 })
 export class RequestCard {
+  @Input() requestId = '';
   @Input() title = '';
   @Input() status = '';
   @Input() priority = '';
