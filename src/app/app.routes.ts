@@ -7,9 +7,11 @@ import { LoginPage } from './pages/login-page/login-page';
 import { CreateRequestForm } from './components/create-request-form/create-request-form';
 import { authGuard } from './guards/auth-guard';
 import { CreateFacilityForm } from './components/create-facility-form/create-facility-form';
+import { RegisterPage } from './pages/register-page/register-page';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPage },
+    { path: 'register', component: RegisterPage },
     { path: '', component: RequestListPage, canActivate: [authGuard] },
     { path: 'requests/new', component: CreateRequestForm, canActivate: [authGuard] },
     { path: 'requests/:id', component: RequestDetailPage, canActivate: [authGuard] },
