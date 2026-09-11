@@ -32,6 +32,33 @@ export class RequestDetailPage {
   private sanitizer = inject(DomSanitizer);
   imageUrls: Map<number, any> = new Map();
 
+  isEditing = false;
+  editTitle = '';
+  editDescription = '';
+  editPriority = '';
+
+  startEdit(request: any) {
+    this.isEditing = true;
+    this.editTitle = request.title;
+    this.editDescription = request.description;
+    this.editPriority = request.priority;
+  }
+
+  saveEdit() {
+    const dto = {
+      title: this.editTitle,
+      description: this.editDescription,
+      priority: this.editPriority
+    };
+    this.maintenanceRequestService.updateRequest(this.requestId, dto).subscribe({
+      next: () => {
+        this.isEditing = false;
+        this.request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
+      },
+      error: (err) => console.error('Failed to update request', err)
+    })
+  }
+
   submitComment() {
     this.maintenanceRequestService.addComment(this.requestId, this.newCommentText).subscribe({
       next: () => {

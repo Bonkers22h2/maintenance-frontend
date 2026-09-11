@@ -49,4 +49,8 @@ export class MaintenanceRequest {
       responseType: 'blob'
     });
   }
+
+  updateRequest(requestId: string, dto: any) {
+    return this.http.put<any>(`${this.apiUrl}/${requestId}`, dto);
+  }
 }

@@ -3,65 +3,102 @@
         <h1>Request details</h1>
     </div>
 
-<div class="stack" *ngIf="request$ | async as request">
-    <section class="detail-panel">
-        <h2>{{ request.title }}</h2>
-        <dl class="detail-list">
-            <dt>ID</dt><dd>{{ request.id }}</dd>
-            <dt>Priority</dt><dd>{{ request.priority }}</dd>
-            <dt>Description</dt><dd>{{ request.description }}</dd>
-            <dt>Created at</dt><dd>{{ request.createdAt }}</dd>
-            <dt>Due at</dt><dd>{{ request.dueAt }}</dd>
-            <dt>Status</dt><dd>{{ request.status }}</dd>
-            <dt>Assigned staff</dt><dd>{{ request.assignedStaffName || 'Not yet assigned' }}</dd>
-            <dt>Facility</dt><dd>{{ request.facilityName || 'Not yet assigned' }}</dd>
-            <dt>Tenant</dt><dd>{{ request.tenantName || 'Not yet assigned' }}</dd>
-            <dt>Vendor</dt><dd>{{ request.vendorName || 'Not yet assigned' }}</dd>
-        </dl>
+    <div class="stack" *ngIf="request$ | async as request">
+        <section class="detail-panel">
+            <div *ngIf="!isEditing">
+                <h2>{{ request.title }}</h2>
+                <dl class="detail-list">
+                    <dt>ID</dt>
+                    <dd>{{ request.id }}</dd>
+                    <dt>Priority</dt>
+                    <dd>{{ request.priority }}</dd>
+                    <dt>Description</dt>
+                    <dd>{{ request.description }}</dd>
+                    <dt>Created at</dt>
+                    <dd>{{ request.createdAt }}</dd>
+                    <dt>Due at</dt>
+                    <dd>{{ request.dueAt }}</dd>
+                    <dt>Status</dt>
+                    <dd>{{ request.status }}</dd>
+                    <dt>Assigned staff</dt>
+                    <dd>{{ request.assignedStaffName || 'Not yet assigned' }}</dd>
+                    <dt>Facility</dt>
+                    <dd>{{ request.facilityName || 'Not yet assigned' }}</dd>
+                    <dt>Tenant</dt>
+                    <dd>{{ request.tenantName || 'Not yet assigned' }}</dd>
+                    <dt>Vendor</dt>
+                    <dd>{{ request.vendorName || 'Not yet assigned' }}</dd>
+                </dl>
 
-    <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
-        Mark as Assigned
-    </button>
-    </section>
-
-    <section>
-        <div class="section-heading"><h2>Attachments</h2></div>
-        <div class="attachment-list" *ngIf="attachments$ | async as attachments">
-            <div *ngFor="let attachment of attachments">
-                <p>{{ attachment.fileName }}</p>
-                <img *ngIf="imageUrls.get(attachment.id) as imgUrl" [src]="imgUrl" width="150">
-                <button *ngIf="!imageUrls.get(attachment.id)" (click)="loadImage(attachment.id)">View Image</button>
+                <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
+                    Mark as Assigned
+                </button>
+                <button *ngIf="userRole === 'TENANT' || userRole === 'ADMIN'" (click)="startEdit(request)">
+                    Edit
+                </button>
             </div>
-    </div>
-    </section>
 
-    <section>
-        <div class="section-heading"><h2>Upload attachment</h2></div>
-        <div class="page-actions">
-            <input type="file" (change)="onFileSelected($event)">
-            <button (click)="uploadAttachment()">Upload</button>
-    </div>
-    </section>
-
-    <section>
-        <div class="section-heading"><h2>Comments</h2></div>
-        <div class="comment-list" *ngIf="comments$ | async as comments">
-            <div *ngFor="let comment of comments">
-                <p><strong>{{ comment.authorName }}</strong>: {{ comment.content }}</p>
+            <div *ngIf="isEditing">
+                <input [(ngModel)]="editTitle" name="editTitle">
+                <textarea [(ngModel)]="editDescription" name="editDescription"></textarea>
+                <select [(ngModel)]="editPriority" name="editPriority">
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                </select>
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="isEditing = false">Cancel</button>
             </div>
-        </div>
-        <form (ngSubmit)="submitComment()">
-            <textarea [(ngModel)]="newCommentText" name="newCommentText" placeholder="Put your comment here" required></textarea>
-            <button type="submit">Post comment</button>
-        </form>
-    </section>
+        </section>
 
-    <section>
-        <div class="section-heading"><h2>Status history</h2></div>
-        <div class="history-list" *ngIf="histories$ | async as histories">
-            <div *ngFor="let history of histories">
-                <p><strong>{{ history.changedBy }}</strong>: {{ history.changedAt }}: <strong>{{ history.oldStatus }}</strong> -> <strong>{{ history.newStatus }}</strong></p>
+        <section>
+            <div class="section-heading">
+                <h2>Attachments</h2>
             </div>
+            <div class="attachment-list" *ngIf="attachments$ | async as attachments">
+                <div *ngFor="let attachment of attachments">
+                    <p>{{ attachment.fileName }}</p>
+                    <img *ngIf="imageUrls.get(attachment.id) as imgUrl" [src]="imgUrl" width="150">
+                    <button *ngIf="!imageUrls.get(attachment.id)" (click)="loadImage(attachment.id)">View Image</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <h2>Upload attachment</h2>
+            </div>
+            <div class="page-actions">
+                <input type="file" (change)="onFileSelected($event)">
+                <button (click)="uploadAttachment()">Upload</button>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <h2>Comments</h2>
+            </div>
+            <div class="comment-list" *ngIf="comments$ | async as comments">
+                <div *ngFor="let comment of comments">
+                    <p><strong>{{ comment.authorName }}</strong>: {{ comment.content }}</p>
+                </div>
+            </div>
+            <form (ngSubmit)="submitComment()">
+                <textarea [(ngModel)]="newCommentText" name="newCommentText" placeholder="Put your comment here"
+                    required></textarea>
+                <button type="submit">Post comment</button>
+            </form>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <h2>Status history</h2>
+            </div>
+            <div class="history-list" *ngIf="histories$ | async as histories">
+                <div *ngFor="let history of histories">
+                    <p><strong>{{ history.changedBy }}</strong>: {{ history.changedAt }}: <strong>{{ history.oldStatus
+                            }}</strong> -> <strong>{{ history.newStatus }}</strong></p>
+                </div>
+            </div>
+        </section>
     </div>
-    </section>
-</div>
