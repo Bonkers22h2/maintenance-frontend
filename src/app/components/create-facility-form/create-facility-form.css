@@ -1,0 +1,17 @@
+:host {
+	display: block;
+	width: min(100% - 2rem, 760px);
+	margin: 0 auto;
+	padding: 3rem 0 4rem;
+}
+
+.form-panel {
+	width: 100%;
+}
+
+@media (max-width: 600px) {
+	:host {
+		width: min(100% - 1.25rem, 760px);
+		padding-top: 1.5rem;
+	}
+}

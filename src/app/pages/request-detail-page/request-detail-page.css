@@ -1,0 +1,47 @@
+.request-detail-page .stack {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.request-detail-page section {
+	display: grid;
+	gap: 1rem;
+}
+
+.request-detail-page .detail-panel {
+	width: 100%;
+}
+
+.request-detail-page .detail-list dd {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.request-detail-page .section-heading {
+	width: 100%;
+	margin: 0;
+}
+
+.request-detail-page .page-actions {
+	display: grid;
+	justify-items: start;
+	gap: 0.75rem;
+	margin: 0;
+}
+
+.request-detail-page .page-actions input {
+	width: 100%;
+}
+
+.request-detail-page .attachment-list,
+.request-detail-page .comment-list,
+.request-detail-page .history-list {
+	width: 100%;
+	margin: 0;
+}
+
+.request-detail-page .attachment-list p,
+.request-detail-page .comment-list p,
+.request-detail-page .history-list p {
+	margin: 0;
+}

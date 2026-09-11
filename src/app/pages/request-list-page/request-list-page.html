@@ -1,15 +1,26 @@
-<p *ngIf="maintenanceRequests$ | async as requests">
-  {{ requests.length }}
-</p>
-
-<div *ngFor="let request of (maintenanceRequests$ | async)">
-  <a [routerLink]="['/requests', request.id]">
-    <app-request-card [requestId]="request.id" [title]="request.title" [status]="request.status"
-      [priority]="request.priority"></app-request-card>
-  </a>
+<div class="page-header">
+  <div>
+    <h1>Maintenance requests</h1>
+    <p>Track open work and service priorities.</p>
+  </div>
+  <div class="header-actions">
+    <a class="button" routerLink="/requests/new">New request</a>
+    <a class="button" routerLink="/facilities">Facilities</a>
+  </div>
 
 </div>
 
+<ng-container *ngIf="maintenanceRequests$ | async as requests">
+  <p>{{ requests.length }} request{{ requests.length === 1 ? '' : 's' }}</p>
+  <div class="content-grid">
+    <div *ngFor="let request of requests">
+      <a [routerLink]="['/requests', request.id]">
+        <app-request-card [requestId]="request.id" [title]="request.title" [status]="request.status"
+          [priority]="request.priority"></app-request-card>
+      </a>
+    </div>
+  </div>
+</ng-container>
 
-<a routerLink="/requests/new">+ New Request</a>
-<a [routerLink]="['/facilities']">Facilities</a>
+<div class="page-actions">
+</div>

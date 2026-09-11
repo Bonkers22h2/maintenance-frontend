@@ -1,13 +1,18 @@
+<div class="page-header">
+    <h1>New facility</h1>
+</div>
+
+<section class="form-panel">
 <form (ngSubmit)="submitForm()">
     <label>Name:
         <input type="text" [(ngModel)]="name" name="name" required>
     </label>
 
     <label>Location:
-        <input type="text" [(ngModel)]="location" name="location" required>\
+        <input type="text" [(ngModel)]="location" name="location" required>
     </label>
 
-    <label>Facilty Type:
+    <label>Facility Type:
         <select [(ngModel)]="facilityType" name="facilityType">
             <option value="ROOM">Room</option>
             <option value="COMMON_AREA">Common Area</option>
@@ -19,3 +24,4 @@
         <button type="submit">Create Facility</button>
 
 </form>
+</section>

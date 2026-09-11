@@ -1,0 +1,27 @@
+.app-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	width: min(100% - 2rem, 1120px);
+	margin: 0 auto;
+	padding: 1rem 0;
+	border-bottom: 1px solid #111;
+}
+
+.app-brand {
+	color: #111;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.app-header button {
+	min-height: 2.25rem;
+	padding: 0.45rem 0.8rem;
+}
+
+@media (max-width: 600px) {
+	.app-header {
+		width: min(100% - 1.25rem, 1120px);
+	}
+}

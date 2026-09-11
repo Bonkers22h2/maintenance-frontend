@@ -1,6 +1,12 @@
-<div *ngIf="facility$ | async as facility">
-    <h2>Facility name:  {{ facility.name }}</h2>
-    <h3>ID: {{ facility.id}} </h3>
-    <p>Facility Type: {{ facility.facilityType}}</p>
-    <p>Location: {{ facility.location }} </p>
+<div class="page-header">
+    <h1>Facility details</h1>
+</div>
+
+<div class="detail-panel" *ngIf="facility$ | async as facility">
+    <h2>{{ facility.name }}</h2>
+    <dl class="detail-list">
+        <dt>ID</dt><dd>{{ facility.id }}</dd>
+        <dt>Facility type</dt><dd>{{ facility.facilityType }}</dd>
+        <dt>Location</dt><dd>{{ facility.location }}</dd>
+    </dl>
 </div>

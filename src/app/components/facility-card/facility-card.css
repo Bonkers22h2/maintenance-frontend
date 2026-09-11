@@ -1,0 +1,6 @@
+.card {
+	display: flex;
+	height: 165px;
+	flex-direction: column;
+	overflow: hidden;
+}

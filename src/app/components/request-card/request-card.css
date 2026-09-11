@@ -1,0 +1,18 @@
+.card {
+	display: flex;
+	height: 165px;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.card h3 {
+	flex: 0 0 auto;
+}
+
+.card p {
+	flex: 0 0 auto;
+}
+
+button {
+	align-self: flex-start;
+}

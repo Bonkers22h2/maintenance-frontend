@@ -12,11 +12,6 @@ export class RequestCard {
   @Input() title = '';
   @Input() status = '';
   @Input() priority = '';
-  imageUrl = 'https://placehold.co/100'
-
-  markAsRead() {
-    console.log("marked as read");
-  }
 }
 
 

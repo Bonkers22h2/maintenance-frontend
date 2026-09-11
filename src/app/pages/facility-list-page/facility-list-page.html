@@ -1,11 +1,19 @@
+<div class="page-header">
+    <div>
+        <h1>Facilities</h1>
+        <p>Browse and manage maintained locations.</p>
+    </div>
+    <a class="button" routerLink="/facilities/new">New facility</a>
+</div>
+
 <ng-container *ngIf="facilities$ | async as facilities">
-    <div *ngFor="let facility of facilities">
+    <div class="content-grid">
+        <div *ngFor="let facility of facilities">
         <a [routerLink]="['/facilities', facility.id]">
             <app-facility-card [name]="facility.name" [location]="facility.location"
                 [facilityType]="facility.facilityType">
             </app-facility-card>
         </a>
+        </div>
     </div>
 </ng-container>
-
-<a routerLink="/facilities/new">+ New Facilities</a>
