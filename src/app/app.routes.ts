@@ -8,6 +8,7 @@ import { CreateRequestForm } from './components/create-request-form/create-reque
 import { authGuard } from './guards/auth-guard';
 import { CreateFacilityForm } from './components/create-facility-form/create-facility-form';
 import { RegisterPage } from './pages/register-page/register-page';
+import { NotificationsPage } from './pages/notifications-page/notifications-page';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPage },
@@ -17,5 +18,6 @@ export const routes: Routes = [
     { path: 'requests/:id', component: RequestDetailPage, canActivate: [authGuard] },
     { path: 'facilities/new', component: CreateFacilityForm, canActivate: [authGuard]},
     { path: 'facilities', component: FacilityListPage, canActivate: [authGuard] },
-    { path: 'facilities/:id', component: FacilityDetailPage, canActivate: [authGuard] }
-];
+    { path: 'facilities/:id', component: FacilityDetailPage, canActivate: [authGuard] },
+    { path: 'notifications', component: NotificationsPage, canActivate: [authGuard]}
+]; 

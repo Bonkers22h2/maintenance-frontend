@@ -1,0 +1,9 @@
+<ng-container *ngIf="notifications$ | async as notifications">
+    <p> {{notifications.length}} </p>
+
+    <div *ngFor="let notification of notifications">
+        <p>{{notification.createdAt}}</p>
+        <p>{{notification.message}}</p>
+        <p>{{notification.maintenanceRequest}}</p>
+    </div>
+</ng-container>
