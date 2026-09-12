@@ -1,8 +1,9 @@
 <header class="app-header" *ngIf="isLoggedIn()">
 	<a routerLink="/" class="app-brand">Maintenance system</a>
-	<button type="button" (click)="logout()">Log out</button>
-	<a class="button" routerLink="/notifications">notifications</a>
-
+	<nav class="app-header-actions" aria-label="Account navigation">
+		<a class="button button-secondary" routerLink="/notifications">Notifications</a>
+		<button type="button" (click)="logout()">Log out</button>
+	</nav>
 </header>
 
 <router-outlet></router-outlet>
