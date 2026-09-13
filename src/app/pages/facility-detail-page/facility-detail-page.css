@@ -1,0 +1,31 @@
+.detail-panel {
+	display: grid;
+	gap: 1.25rem;
+}
+
+.detail-panel h2 {
+	margin-bottom: 0;
+}
+
+.detail-panel > div {
+	display: grid;
+	gap: 1rem;
+}
+
+.detail-panel .detail-list {
+	margin-top: 0;
+}
+
+.facility-edit-form {
+	gap: 1.25rem;
+}
+
+.facility-edit-form label {
+	display: grid;
+	gap: 0.45rem;
+	font-weight: 700;
+}
+
+.facility-edit-form .page-actions {
+	margin-top: 0.25rem;
+}
