@@ -1,7 +1,27 @@
-<div *ngFor="let tenant of (tenants$ | async)">
-  <p>{{ tenant.name }} ({{ tenant.email }}) — Facility: {{ tenant.facilityName || 'Unassigned' }}</p>
-  <select [(ngModel)]="selectedFacilityId[tenant.id]">
-    <option *ngFor="let facility of (facilities$ | async)" [value]="facility.id">{{ facility.name }}</option>
-  </select>
-  <button (click)="assignFacility(tenant.id)">Assign</button>
-</div>
+<main class="assign-page">
+  <header class="page-header">
+    <div>
+      <h1>Assign facilities</h1>
+      <p>Choose a facility for each tenant.</p>
+    </div>
+  </header>
+
+  <section class="assignment-list" aria-label="Tenant facility assignments">
+    <article class="assignment-row" *ngFor="let tenant of (tenants$ | async)">
+      <div class="tenant-details">
+        <h2>{{ tenant.name }}</h2>
+        <p>{{ tenant.email }}</p>
+        <span>Current facility: {{ tenant.facilityName || 'Unassigned' }}</span>
+      </div>
+
+      <form class="assignment-form" (ngSubmit)="assignFacility(tenant.id)">
+        <label [for]="'facility-' + tenant.id">Facility</label>
+        <select [id]="'facility-' + tenant.id" name="facility" [(ngModel)]="selectedFacilityId[tenant.id]" required>
+          <option [ngValue]="undefined" disabled>Select a facility</option>
+          <option *ngFor="let facility of (facilities$ | async)" [ngValue]="facility.id">{{ facility.name }}</option>
+        </select>
+        <button type="submit">Assign</button>
+      </form>
+    </article>
+  </section>
+</main>

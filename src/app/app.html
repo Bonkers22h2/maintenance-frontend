@@ -1,11 +1,12 @@
 <header class="app-header" *ngIf="isLoggedIn()">
 	<a routerLink="/" class="app-brand">Maintenance system</a>
-	<nav class="app-header-actions" aria-label="Account navigation">
-		<a class="button button-secondary" routerLink="/notifications">Notifications</a>
-		<button type="button" (click)="logout()">Log out</button>
-	</nav>
-	<a *ngIf="userRole === 'ADMIN'" routerLink="/admin/assign-facility">Assign Facilities</a>
-
+	<div class="app-header-navigation">
+		<nav class="app-header-actions" aria-label="Account navigation">
+			<a class="button button-secondary" routerLink="/notifications">Notifications</a>
+			<button type="button" (click)="logout()">Log out</button>
+		</nav>
+		<a *ngIf="userRole === 'ADMIN'" routerLink="/admin/assign-facility">Assign Facilities</a>
+	</div>
 </header>
 
 <router-outlet></router-outlet>

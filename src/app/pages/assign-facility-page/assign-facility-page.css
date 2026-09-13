@@ -1,0 +1,97 @@
+.assign-page {
+	display: block;
+	width: min(100% - 2rem, 1120px);
+	margin: 0 auto;
+	padding: 3rem 0 4rem;
+}
+
+.assign-page .page-header {
+	margin-bottom: 2rem;
+}
+
+.assignment-list {
+	display: grid;
+	gap: 1rem;
+}
+
+.assignment-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+	align-items: end;
+	gap: 2rem;
+	border: 1px solid #111;
+	padding: 1.25rem;
+}
+
+.tenant-details h2,
+.tenant-details p,
+.tenant-details span {
+	display: block;
+}
+
+.tenant-details h2 {
+	margin: 0 0 0.35rem;
+	font-size: 1.1rem;
+}
+
+.tenant-details p,
+.tenant-details span {
+	margin: 0;
+}
+
+.tenant-details p {
+	margin-bottom: 0.75rem;
+}
+
+.tenant-details span {
+	font-size: 0.9rem;
+}
+
+.assignment-form {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.assignment-form label {
+	font-weight: 700;
+}
+
+.assignment-form select {
+	min-width: 0;
+	min-height: 2.75rem;
+	border: 1px solid #111;
+	border-radius: 0;
+	padding: 0.65rem 0.75rem;
+	background: #fff;
+	color: #111;
+}
+
+.assignment-form button {
+	white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+	.assign-page {
+		width: min(100% - 1.25rem, 1120px);
+		padding-top: 2rem;
+	}
+
+	.assignment-row {
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+
+	.assignment-form {
+		grid-template-columns: 1fr auto;
+	}
+
+	.assignment-form label {
+		grid-column: 1 / -1;
+	}
+
+	.assignment-form select {
+		width: 100%;
+	}
+}
