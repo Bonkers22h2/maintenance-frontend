@@ -42,7 +42,8 @@ select:focus-visible, textarea:focus-visible {
 }
 
 app-facility-list-page, app-request-list-page, app-facility-detail-page,
-app-request-detail-page, app-login-page, app-register-page {
+app-request-detail-page, app-login-page, app-register-page,
+app-vendor-list-page, app-vendor-detail-page, app-create-vendor-form {
 	display: block;
 	width: min(100% - 2rem, 1120px);
 	margin: 0 auto;
@@ -119,7 +120,8 @@ form button { justify-self: start; }
 
 @media (max-width: 600px) {
 	app-facility-list-page, app-request-list-page, app-facility-detail-page,
-	app-request-detail-page, app-login-page, app-register-page {
+	app-request-detail-page, app-login-page, app-register-page,
+	app-vendor-list-page, app-vendor-detail-page, app-create-vendor-form {
 		width: min(100% - 1.25rem, 1120px);
 		padding-top: 1.5rem;
 	}

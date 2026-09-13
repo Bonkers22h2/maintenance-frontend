@@ -1,13 +1,34 @@
-<form (ngSubmit)="submitForm()">
-    <input type="text" [(ngModel)]="name" name="name" required>
-    <input type="text" [(ngModel)]="email" name="email" required>
-    <input type="text" [(ngModel)]="contactNumber" name="contactNumber" required>
-    <select [(ngModel)]="specialty" name="specialty">
-        <option value="PLUMBING">Plumbing</option>
-        <option value="ELECTRICAL">Electrical</option>
-        <option value="HVAC">HVAC</option>
-    </select>
+<div class="page-header">
+    <h1>New vendor</h1>
+</div>
 
-    <p *ngIf="errorMessage"> {{errorMessage}}</p>
-    <button type="submit">Create Vendor</button>
-</form>
+<section class="form-panel">
+    <form (ngSubmit)="submitForm()">
+        <label>
+            Name
+            <input type="text" [(ngModel)]="name" name="name" required>
+        </label>
+
+        <label>
+            Email
+            <input type="email" [(ngModel)]="email" name="email" required>
+        </label>
+
+        <label>
+            Contact number
+            <input type="text" [(ngModel)]="contactNumber" name="contactNumber" required>
+        </label>
+
+        <label>
+            Specialty
+            <select [(ngModel)]="specialty" name="specialty">
+                <option value="PLUMBING">Plumbing</option>
+                <option value="ELECTRICAL">Electrical</option>
+                <option value="HVAC">HVAC</option>
+            </select>
+        </label>
+
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <button type="submit">Create vendor</button>
+    </form>
+</section>
