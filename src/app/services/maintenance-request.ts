@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
+import { required } from '@angular/forms/signals';
 
 @Service()
 export class MaintenanceRequest {
@@ -30,6 +31,14 @@ export class MaintenanceRequest {
     return this.http.post<any>(`${this.apiUrl}/${requestId}/comments`, { content });
   }
 
+  editComment(requestId: string, commentId: string, content: string) {
+    return this.http.patch<any>(`${this.apiUrl}/${requestId}/comments/${commentId}`, { content });
+  }
+
+  deleteComment(requestId: string, commentId: string) {
+    return this.http.delete<any>(`${this.apiUrl}/${requestId}/comments/${commentId}`);
+  }
+
   getStatusHisotry(requestId: string) {
     return this.http.get<any>(`${this.apiUrl}/${requestId}/history`);
   }
@@ -54,7 +63,7 @@ export class MaintenanceRequest {
     return this.http.put<any>(`${this.apiUrl}/${requestId}`, dto);
   }
 
-  assignStaff(requestId: string, staffId: number){
-    return this.http.patch<any>(`${this.apiUrl}/${requestId}/assign`, {staffId});
+  assignStaff(requestId: string, staffId: number) {
+    return this.http.patch<any>(`${this.apiUrl}/${requestId}/assign`, { staffId });
   }
 }

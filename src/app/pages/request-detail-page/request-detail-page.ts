@@ -6,6 +6,7 @@ import { Auth } from '../../services/auth';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Users } from '../../services/users';
+import { CommentTriviaType } from '@angular/compiler';
 
 
 @Component({
@@ -41,6 +42,28 @@ export class RequestDetailPage {
   editDescription = '';
   editPriority = '';
 
+  editingCommentId: number | null = null;
+  isEditingComment = false;
+  editComment = '';
+
+  startEditComment(comment: any) {
+    this.isEditingComment = true;
+    this.editingCommentId = comment.id;
+    this.editComment = comment.content;
+  }
+
+  saveEditComment() {
+    if (!this.editingCommentId) return;
+
+    this.maintenanceRequestService.editComment(this.requestId, this.editingCommentId.toString(), this.editComment).subscribe({
+      next: () => {
+        this.isEditingComment = false;
+        this.comments$ = this.maintenanceRequestService.getComments(this.requestId);
+      },
+      error: (err) => console.error('Failed to edit comment:', err)
+    })
+  }
+
   startEdit(request: any) {
     this.isEditing = true;
     this.editTitle = request.title;
@@ -63,6 +86,15 @@ export class RequestDetailPage {
     })
   }
 
+  deleteComment(commentId: number) {
+    this.maintenanceRequestService.deleteComment(this.requestId, commentId.toString()).subscribe({
+      next: () => {
+        this.comments$ = this.maintenanceRequestService .getComments(this.requestId);
+      },
+      error: (err) => console.error('Failed to delete comment', err)
+    })
+  }
+
   submitComment() {
     this.maintenanceRequestService.addComment(this.requestId, this.newCommentText).subscribe({
       next: () => {
@@ -74,7 +106,7 @@ export class RequestDetailPage {
   }
 
   assignStaffToRequest() {
-    if(!this.selectedStaffId) return;
+    if (!this.selectedStaffId) return;
 
     this.maintenanceRequestService.assignStaff(this.requestId, this.selectedStaffId).subscribe({
       next: () => {

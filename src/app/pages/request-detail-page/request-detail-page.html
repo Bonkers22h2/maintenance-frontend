@@ -87,7 +87,17 @@
             </div>
             <div class="comment-list" *ngIf="comments$ | async as comments">
                 <div *ngFor="let comment of comments">
-                    <p><strong>{{ comment.authorName }}</strong>: {{ comment.content }}</p>
+                    <div *ngIf="editingCommentId !== comment.id">
+                        <p><strong>{{ comment.authorName }}</strong>: {{ comment.content }}</p>
+                        <button (click)="startEditComment(comment)">Edit</button>
+                    </div>
+                    <div *ngIf="editingCommentId === comment.id">
+                        <textarea [(ngModel)]="editComment"></textarea>
+                        <button (click)="saveEditComment()">Save</button>
+                        <button (click)="editingCommentId = null">Cancel</button>
+                    </div>
+
+                    <button (click)="deleteComment(comment.id)">Delete</button>
                 </div>
             </div>
             <form (ngSubmit)="submitComment()">
