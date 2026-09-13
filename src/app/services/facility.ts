@@ -23,4 +23,8 @@ export class Facility {
     editFacility(id: string, dto: any) {
         return this.http.put<any>(`${this.apiUrl}/${id}`, dto)
     }
+
+    deleteFacility(id: string) {
+        return this.http.delete<any>(`${this.apiUrl}/${id}`)
+    }
 }

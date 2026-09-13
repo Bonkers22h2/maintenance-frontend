@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Facility } from '../../services/facility';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../services/auth';
@@ -16,6 +16,7 @@ export class FacilityDetailPage {
   private route = inject(ActivatedRoute);
   private facilityService = inject(Facility);
   private authService = inject(Auth);
+  private router = inject(Router);
 
   facilityId = this.route.snapshot.paramMap.get('id')!;
   facility$ = this.facilityService.getFacilityById(this.facilityId);
@@ -45,6 +46,15 @@ export class FacilityDetailPage {
         this.facility$ = this.facilityService.getFacilityById(this.facilityId);
       },
       error: (err) => console.error('Failed to update facility', err)
+    })
+  }
+
+  deleteFacilty() {
+    this.facilityService.deleteFacility(this.facilityId).subscribe({
+      next: () => {
+        this.router.navigate(['/facilities']);
+      },
+      error: (err) => console.error('Failed to delete facility', err)
     })
   }
 }
