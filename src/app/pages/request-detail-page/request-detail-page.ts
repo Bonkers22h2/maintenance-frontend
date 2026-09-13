@@ -5,6 +5,7 @@ import { MaintenanceRequest } from '../../services/maintenance-request';
 import { Auth } from '../../services/auth';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Users } from '../../services/users';
 
 
 @Component({
@@ -17,6 +18,9 @@ export class RequestDetailPage {
   private route = inject(ActivatedRoute);
   private maintenanceRequestService = inject(MaintenanceRequest);
   private authService = inject(Auth);
+  private userService = inject(Users);
+  staffUsers$ = this.userService.getStaffUsers();
+  selectedStaffId: number | null = null;
 
   requestId = this.route.snapshot.paramMap.get('id')!;
   request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
@@ -66,7 +70,18 @@ export class RequestDetailPage {
         this.comments$ = this.maintenanceRequestService.getComments(this.requestId);
       },
       error: (err) => console.error('Failed to add comment:', err)
-    });
+    })
+  }
+
+  assignStaffToRequest() {
+    if(!this.selectedStaffId) return;
+
+    this.maintenanceRequestService.assignStaff(this.requestId, this.selectedStaffId).subscribe({
+      next: () => {
+        this.request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
+      },
+      error: (err) => console.error('Failed to assign staff:', err)
+    })
   }
 
   markAssigned() {
@@ -105,4 +120,5 @@ export class RequestDetailPage {
       this.imageUrls.set(attachmentId, this.sanitizer.bypassSecurityTrustUrl(url));
     });
   }
+
 }

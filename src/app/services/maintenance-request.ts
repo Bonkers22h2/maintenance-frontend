@@ -53,4 +53,8 @@ export class MaintenanceRequest {
   updateRequest(requestId: string, dto: any) {
     return this.http.put<any>(`${this.apiUrl}/${requestId}`, dto);
   }
+
+  assignStaff(requestId: string, staffId: number){
+    return this.http.patch<any>(`${this.apiUrl}/${requestId}/assign`, {staffId});
+  }
 }
