@@ -89,7 +89,7 @@ export class RequestDetailPage {
   deleteComment(commentId: number) {
     this.maintenanceRequestService.deleteComment(this.requestId, commentId.toString()).subscribe({
       next: () => {
-        this.comments$ = this.maintenanceRequestService .getComments(this.requestId);
+        this.comments$ = this.maintenanceRequestService.getComments(this.requestId);
       },
       error: (err) => console.error('Failed to delete comment', err)
     })
@@ -143,6 +143,15 @@ export class RequestDetailPage {
         this.attachments$ = this.maintenanceRequestService.getAttachments(this.requestId);
       },
       error: (err) => console.error('Upload failed:', err)
+    })
+  }
+
+  deleteAttachment(attachmentId: number) {
+    this.maintenanceRequestService.deleteAttachment(this.requestId, attachmentId.toString()).subscribe({
+      next: () => {
+        this.attachments$ = this.maintenanceRequestService.getAttachments(this.requestId);
+      },
+      error: (err) => console.error('Failed to delete attachment:', err)
     })
   }
 

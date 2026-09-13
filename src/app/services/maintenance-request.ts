@@ -49,6 +49,10 @@ export class MaintenanceRequest {
     return this.http.post<any>(`${this.apiUrl}/${requestId}/attachments`, formData);
   }
 
+  deleteAttachment(requestId: string, attachmentId: string) {
+    return this.http.delete<any>(`${this.apiUrl}/${requestId}/attachments/${attachmentId}`)
+  }
+
   getAttachments(requestId: string) {
     return this.http.get<any>(`${this.apiUrl}/${requestId}/attachments`);
   }

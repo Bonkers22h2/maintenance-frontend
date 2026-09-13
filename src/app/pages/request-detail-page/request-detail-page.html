@@ -67,6 +67,7 @@
                     <p>{{ attachment.fileName }}</p>
                     <img *ngIf="imageUrls.get(attachment.id) as imgUrl" [src]="imgUrl" width="150">
                     <button *ngIf="!imageUrls.get(attachment.id)" (click)="loadImage(attachment.id)">View Image</button>
+                    <button (click)="deleteAttachment(attachment.id)">Delete</button>
                 </div>
             </div>
         </section>
