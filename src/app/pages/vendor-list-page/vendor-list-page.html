@@ -1,0 +1,12 @@
+<div *ngIf="vendors$ | async as vendors">
+    <p> {{vendors.length}}</p>
+    <div *ngFor="let vendor of vendors">
+        <a [routerLink]="['/vendors', vendor.id]">
+            <h3> {{vendor.id}}</h3>
+            <h3> {{vendor.name}}</h3>
+            <p> {{vendor.specialty}}</p>
+            <p> {{vendor.contactNumber}}</p>
+            <p> {{vendor.email}}</p>
+        </a>
+    </div>
+</div>

@@ -10,6 +10,8 @@ import { CreateFacilityForm } from './components/create-facility-form/create-fac
 import { RegisterPage } from './pages/register-page/register-page';
 import { NotificationsPage } from './pages/notifications-page/notifications-page';
 import { AssignFacilityPage } from './pages/assign-facility-page/assign-facility-page';
+import { VendorListPage } from './pages/vendor-list-page/vendor-list-page';
+import { VendorDetailPage } from './pages/vendor-detail-page/vendor-detail-page';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPage },
@@ -22,5 +24,7 @@ export const routes: Routes = [
     { path: 'facilities/:id', component: FacilityDetailPage, canActivate: [authGuard] },
     { path: 'notifications', component: NotificationsPage, canActivate: [authGuard] },
     { path: 'admin/assign-facility', component: AssignFacilityPage, canActivate: [authGuard] },
+    { path: 'vendors', component: VendorListPage, canActivate: [authGuard] },
+    { path: 'vendors/:id', component: VendorDetailPage, canActivate: [authGuard]},
 
 ]; 
