@@ -17,6 +17,42 @@
 	overflow-wrap: anywhere;
 }
 
+.request-detail-page .request-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 1rem;
+}
+
+.request-detail-page .staff-assignment {
+	display: grid;
+	gap: 0.5rem;
+	margin-top: 1.5rem;
+}
+
+.request-detail-page .staff-assignment label {
+	font-weight: 700;
+}
+
+.request-detail-page .staff-assignment-controls {
+	display: flex;
+	align-items: stretch;
+	gap: 0.75rem;
+}
+
+.request-detail-page .staff-assignment select {
+	min-width: 0;
+	flex: 1;
+}
+
+.request-detail-page .request-edit-form {
+	gap: 1.25rem;
+}
+
+.request-detail-page .request-edit-form .request-actions {
+	margin-top: 0;
+}
+
 .request-detail-page .section-heading {
 	width: 100%;
 	margin: 0;
@@ -44,4 +80,14 @@
 .request-detail-page .comment-list p,
 .request-detail-page .history-list p {
 	margin: 0;
+}
+
+@media (max-width: 600px) {
+	.request-detail-page .staff-assignment-controls {
+		flex-direction: column;
+	}
+
+	.request-detail-page .staff-assignment-controls button {
+		justify-self: start;
+	}
 }

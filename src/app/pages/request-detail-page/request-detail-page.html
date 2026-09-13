@@ -30,22 +30,27 @@
                     <dd>{{ request.vendorName || 'Not yet assigned' }}</dd>
                 </dl>
 
-                <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
-                    Mark as Assigned
-                </button>
-                <button *ngIf="userRole === 'TENANT' || userRole === 'ADMIN'" (click)="startEdit(request)">
-                    Edit
-                </button>
+                <div class="request-actions">
+                    <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
+                        Mark as Assigned
+                    </button>
+                    <button *ngIf="userRole === 'TENANT' || userRole === 'ADMIN'" (click)="startEdit(request)">
+                        Edit
+                    </button>
+                </div>
             </div>
 
-            <div *ngIf="userRole === 'ADMIN'">
-                <select [(ngModel)]="selectedStaffId">
+            <div class="staff-assignment" *ngIf="userRole === 'ADMIN'">
+                <label for="staff-select">Assign staff</label>
+                <div class="staff-assignment-controls">
+                    <select id="staff-select" [(ngModel)]="selectedStaffId">
                     <option *ngFor="let staff of (staffUsers$ | async)" [value]="staff.id">{{ staff.name }}</option>
-                </select>
-                <button (click)="assignStaffToRequest()">Assign Staff</button>
+                    </select>
+                    <button (click)="assignStaffToRequest()">Assign Staff</button>
+                </div>
             </div>
 
-            <div *ngIf="isEditing">
+            <div class="request-edit-form" *ngIf="isEditing">
                 <input [(ngModel)]="editTitle" name="editTitle">
                 <textarea [(ngModel)]="editDescription" name="editDescription"></textarea>
                 <select [(ngModel)]="editPriority" name="editPriority">
@@ -53,8 +58,10 @@
                     <option value="MEDIUM">Medium</option>
                     <option value="HIGH">High</option>
                 </select>
-                <button (click)="saveEdit()">Save</button>
-                <button (click)="isEditing = false">Cancel</button>
+                <div class="request-actions">
+                    <button (click)="saveEdit()">Save</button>
+                    <button (click)="isEditing = false">Cancel</button>
+                </div>
             </div>
         </section>
 
