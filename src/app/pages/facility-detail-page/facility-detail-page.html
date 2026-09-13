@@ -4,9 +4,22 @@
 
 <div class="detail-panel" *ngIf="facility$ | async as facility">
     <h2>{{ facility.name }}</h2>
-    <dl class="detail-list">
-        <dt>ID</dt><dd>{{ facility.id }}</dd>
-        <dt>Facility type</dt><dd>{{ facility.facilityType }}</dd>
-        <dt>Location</dt><dd>{{ facility.location }}</dd>
-    </dl>
+    <div *ngIf="!isEditing">
+        <h2> {{facility.id}}</h2>
+        <p> {{facility.facilityType}}</p>
+        <p> {{facility.location}}</p>
+        <button *ngIf="userRole === 'ADMIN'" (click)="startEdit(facility)">Edit</button>
+    </div>
+
+    <div *ngIf="isEditing">
+        <input [(ngModel)]="editName" name="editName">
+        <input [(ngModel)]="editLocation" name="location">
+        <select [(ngModel)]="editFacilityType" name="facilityType">
+            <option value="ROOM">Room</option>
+            <option value="COMMON_AREA">Common Area</option>
+            <option value="UTILITY">Utility</option>
+        </select>
+        <button (click)="saveEdit()">Save</button>
+        <button (click)="isEditing = false">Cancel</button>
+    </div>
 </div>
