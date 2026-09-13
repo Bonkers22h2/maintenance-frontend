@@ -5,7 +5,7 @@
   </div>
   <div class="header-actions">
     <a class="button" routerLink="/requests/new">New request</a>
-    <a class="button" routerLink="/facilities">Facilities</a>
+    <a class="button" *ngIf="userRole === 'ADMIN'" routerLink="/facilities">Facilities</a>
   </div>
 
 </div>

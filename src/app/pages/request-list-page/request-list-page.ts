@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MaintenanceRequest } from '../../services/maintenance-request';
 import { FormsModule } from '@angular/forms';
+import { Auth } from '../../services/auth';
 
 @Component({
   imports: [RouterLink, RequestCard, CommonModule, FormsModule],
@@ -13,5 +14,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class RequestListPage {
   private maintenanceRequestService = inject(MaintenanceRequest);
+  private authService = inject(Auth);
+
+  userRole = this.authService.getUserRole();
   maintenanceRequests$ = this.maintenanceRequestService.getRequests();  
+
 }
