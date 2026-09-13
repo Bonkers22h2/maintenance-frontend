@@ -16,4 +16,8 @@ export class Vendors {
     getVendorById(id: string) {
         return this.http.get<any>(`${this.apiUrl}/${id}`)
     }
+
+    createVendor(dto: any) {
+        return this.http.post<any>(this.apiUrl, dto);
+    }
 }

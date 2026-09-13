@@ -12,6 +12,7 @@ import { NotificationsPage } from './pages/notifications-page/notifications-page
 import { AssignFacilityPage } from './pages/assign-facility-page/assign-facility-page';
 import { VendorListPage } from './pages/vendor-list-page/vendor-list-page';
 import { VendorDetailPage } from './pages/vendor-detail-page/vendor-detail-page';
+import { CreateVendorForm } from './components/create-vendor-form/create-vendor-form';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPage },
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'notifications', component: NotificationsPage, canActivate: [authGuard] },
     { path: 'admin/assign-facility', component: AssignFacilityPage, canActivate: [authGuard] },
     { path: 'vendors', component: VendorListPage, canActivate: [authGuard] },
-    { path: 'vendors/:id', component: VendorDetailPage, canActivate: [authGuard]},
+    { path: 'vendors/new', component: CreateVendorForm, canActivate: [authGuard] },
+    { path: 'vendors/:id', component: VendorDetailPage, canActivate: [authGuard] },
 
 ]; 
