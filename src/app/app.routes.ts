@@ -9,6 +9,7 @@ import { authGuard } from './guards/auth-guard';
 import { CreateFacilityForm } from './components/create-facility-form/create-facility-form';
 import { RegisterPage } from './pages/register-page/register-page';
 import { NotificationsPage } from './pages/notifications-page/notifications-page';
+import { AssignFacilityPage } from './pages/assign-facility-page/assign-facility-page';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPage },
@@ -16,8 +17,10 @@ export const routes: Routes = [
     { path: '', component: RequestListPage, canActivate: [authGuard] },
     { path: 'requests/new', component: CreateRequestForm, canActivate: [authGuard] },
     { path: 'requests/:id', component: RequestDetailPage, canActivate: [authGuard] },
-    { path: 'facilities/new', component: CreateFacilityForm, canActivate: [authGuard]},
+    { path: 'facilities/new', component: CreateFacilityForm, canActivate: [authGuard] },
     { path: 'facilities', component: FacilityListPage, canActivate: [authGuard] },
     { path: 'facilities/:id', component: FacilityDetailPage, canActivate: [authGuard] },
-    { path: 'notifications', component: NotificationsPage, canActivate: [authGuard]}
+    { path: 'notifications', component: NotificationsPage, canActivate: [authGuard] },
+    { path: 'admin/assign-facility', component: AssignFacilityPage, canActivate: [authGuard] },
+
 ]; 

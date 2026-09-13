@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Auth } from './services/auth';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class App {
   private router = inject(Router);
   protected readonly title = signal('maintenance-frontend');
+  private authService = inject(Auth);
+  userRole = this.authService.getUserRole();
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');

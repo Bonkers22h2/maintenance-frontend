@@ -4,6 +4,8 @@
 		<a class="button button-secondary" routerLink="/notifications">Notifications</a>
 		<button type="button" (click)="logout()">Log out</button>
 	</nav>
+	<a *ngIf="userRole === 'ADMIN'" routerLink="/admin/assign-facility">Assign Facilities</a>
+
 </header>
 
 <router-outlet></router-outlet>

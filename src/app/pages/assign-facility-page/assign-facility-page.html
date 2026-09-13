@@ -1,0 +1,7 @@
+<div *ngFor="let tenant of (tenants$ | async)">
+  <p>{{ tenant.name }} ({{ tenant.email }}) — Facility: {{ tenant.facilityName || 'Unassigned' }}</p>
+  <select [(ngModel)]="selectedFacilityId[tenant.id]">
+    <option *ngFor="let facility of (facilities$ | async)" [value]="facility.id">{{ facility.name }}</option>
+  </select>
+  <button (click)="assignFacility(tenant.id)">Assign</button>
+</div>

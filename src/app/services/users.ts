@@ -9,4 +9,12 @@ export class Users {
     getStaffUsers() {
         return this.http.get<any[]>(`${this.apiUrl}/staff`);
     }
+
+    getTenantUsers() {
+        return this.http.get<any[]>(`${this.apiUrl}/tenant`);
+    }
+
+    assignFacilityToUser(id: string, facilityId: number) {
+        return this.http.patch<any>(`${this.apiUrl}/${id}/facility`, { facilityId });
+    }
 }
