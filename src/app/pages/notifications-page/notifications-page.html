@@ -7,15 +7,20 @@
 
 <ng-container *ngIf="notifications$ | async as notificationPage">
     <div class="notification-summary">
-        <strong>{{ notificationPage.totalElements }} notification{{ notificationPage.totalElements === 1 ? '' : 's' }}</strong>
-        <span>Page {{ notificationPage.number + 1 }} of {{ notificationPage.totalPages || 1 }}</span>
+        <strong>{{ notificationPage.page.totalElements }} notification{{ notificationPage.page.totalElements === 1 ? '' : 's'
+            }}</strong>
+        <span>Page {{ notificationPage.page.number + 1 }} of {{ notificationPage.page.totalPages || 1 }}</span>
     </div>
 
     <div class="notification-list" *ngIf="notificationPage.content.length; else emptyNotifications">
-        <article class="notification-item" *ngFor="let notification of notificationPage.content; trackBy: trackByNotification">
+        <article class="notification-item"
+            *ngFor="let notification of notificationPage.content; trackBy: trackByNotification">
             <div class="notification-item-header">
                 <time [attr.datetime]="notification.createdAt">{{ notification.createdAt | date:'medium' }}</time>
-                <span *ngIf="notification.maintenanceRequest">Request #{{ notification.maintenanceRequest }}</span>
+                <div class="notification-item-actions">
+                    <span *ngIf="notification.maintenanceRequest">Request #{{ notification.maintenanceRequest }}</span>
+                    <button type="button" *ngIf="!notification.read" (click)="markAsRead(notification.id)">Mark as read</button>
+                </div>
             </div>
             <p>{{ notification.message }}</p>
         </article>
@@ -25,9 +30,11 @@
         <div class="empty-state">You have no notifications.</div>
     </ng-template>
 
-    <nav class="pagination" aria-label="Notifications pagination" *ngIf="notificationPage.totalPages > 1">
-        <button type="button" [disabled]="notificationPage.number === 0" (click)="setPage(notificationPage.number - 1, notificationPage)">Previous</button>
-        <span>Page {{ notificationPage.number + 1 }} of {{ notificationPage.totalPages }}</span>
-        <button type="button" [disabled]="notificationPage.number >= notificationPage.totalPages - 1" (click)="setPage(notificationPage.number + 1, notificationPage)">Next</button>
+    <nav class="pagination" aria-label="Notifications pagination" *ngIf="notificationPage.page.totalPages > 1">
+        <button type="button" [disabled]="notificationPage.page.number === 0"
+            (click)="setPage(notificationPage.page.number - 1, notificationPage)">Previous</button>
+        <span>Page {{ notificationPage.page.number + 1 }} of {{ notificationPage.page.totalPages }}</span>
+        <button type="button" [disabled]="notificationPage.page.number >= notificationPage.page.totalPages - 1"
+            (click)="setPage(notificationPage.page.number + 1, notificationPage)">Next</button>
     </nav>
 </ng-container>

@@ -38,9 +38,28 @@
 	font-size: 0.85rem;
 }
 
-.notification-item-header span {
+.notification-item-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.75rem;
+	margin-left: auto;
+	text-align: right;
+}
+
+.notification-item-actions span {
 	font-weight: 700;
 	color: #111;
+}
+
+.notification-item-actions button {
+	padding: 0.45rem 0.75rem;
+	border: 1px solid #111;
+	background: #111;
+	color: #fff;
+	font: inherit;
+	font-size: 0.8rem;
+	cursor: pointer;
 }
 
 .notification-item p {
@@ -78,6 +97,13 @@
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 0.35rem;
+	}
+
+	.notification-item-actions {
+		width: 100%;
+		justify-content: space-between;
+		margin-left: 0;
+		text-align: left;
 	}
 
 	.pagination {

@@ -20,11 +20,20 @@ export class NotificationsPage {
   );
 
   setPage(page: number, notificationPage: NotificationPage): void {
-    const lastPage = Math.max(notificationPage.totalPages - 1, 0);
+    const lastPage = Math.max(notificationPage.page.totalPages - 1, 0);
     this.pageIndex$.next(Math.min(Math.max(page, 0), lastPage));
   }
 
   trackByNotification(index: number, notification: { id?: number }): number {
     return notification.id ?? index;
+  }
+
+  markAsRead(id: number) {
+    this.notificationService.markAsRead(id).subscribe({
+      next: () => {
+        this.notifications$ = this.notificationService.getNotifications();
+      },
+      error: (err) => console.error('Failed to mark as read', err)
+    })
   }
 }

@@ -3,18 +3,21 @@ import { inject, Service } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 
 export interface NotificationItem {
-    id?: number;
+    id: number;
     createdAt: string;
     message: string;
     maintenanceRequest?: string | number;
+    read: boolean;
 }
 
 export interface NotificationPage {
     content: NotificationItem[];
-    totalElements: number;
-    totalPages: number;
-    number: number;
-    size: number;
+    page: {
+        size: number;
+        number: number;
+        totalElements: number;
+        totalPages: number;
+    };
 }
 
 @Service()
@@ -28,5 +31,9 @@ export class Notification {
             .set('size', size);
 
         return this.http.get<NotificationPage>(this.apiUrl, { params });
+    }
+
+    markAsRead(id: number) {
+        return this.http.patch<any>(`${this.apiUrl}/${id}/read`, {});
     }
 }
