@@ -50,12 +50,14 @@
                 </div>
             </div>
 
-            <div *ngIf="userRole === 'ADMIN'">
+            <div class="staff-assignment" *ngIf="userRole === 'ADMIN'">
                 <label for="vendor-select">Assign vendor</label>
-                <select id="vendor-select" [(ngModel)]="selectedVendorId">
-                    <option *ngFor="let vendor of (vendors$ | async)" [value]="vendor.id">{{ vendor.name }}</option>
-                </select>
-                <button (click)="assignVendorToRequest()">Assign Vendor</button>
+                <div class="staff-assignment-controls">
+                    <select id="vendor-select" [(ngModel)]="selectedVendorId">
+                        <option *ngFor="let vendor of (vendors$ | async)" [value]="vendor.id">{{ vendor.name }}</option>
+                    </select>
+                    <button (click)="assignVendorToRequest()">Assign Vendor</button>
+                </div>
             </div>
 
             <div class="request-edit-form" *ngIf="isEditing">
