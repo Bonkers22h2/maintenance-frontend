@@ -1,0 +1,11 @@
+.vendor-edit-form {
+	display: grid;
+	gap: 0.75rem;
+	margin-top: 1rem;
+}
+
+.vendor-edit-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}

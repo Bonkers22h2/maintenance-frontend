@@ -15,8 +15,8 @@
             <dt>Email</dt>
             <dd>{{ vendor.email }}</dd>
         </dl>
+        <button *ngIf="userRole === 'ADMIN'" (click)="startEdit(vendor)">Edit</button>
     </div>
-    <button *ngIf="userRole === 'ADMIN'" (click)="startEdit(vendor)">Edit</button>
 
     <div class="vendor-edit-form" *ngIf="isEditing">
         <input [(ngModel)]="editName" name="editName">
@@ -24,9 +24,12 @@
             <option value="PLUMBING">Plumbing</option>
             <option value="ELECTRICAL">Electrical</option>
             <option value="HVAC">HVAC</option>
-        </select> <input [(ngModel)]="editContactNumber" name="contactNumber">
+        </select>
+        <input [(ngModel)]="editContactNumber" name="contactNumber">
         <input [(ngModel)]="editEmail" name="email">
-        <button (click)="saveEdit()">Save</button>
-        <button (click)="isEditing = false">Cancel</button>
+        <div class="vendor-edit-actions">
+            <button (click)="saveEdit()">Save</button>
+            <button (click)="isEditing = false">Cancel</button>
+        </div>
     </div>
 </div>
