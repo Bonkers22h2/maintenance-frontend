@@ -3,15 +3,30 @@
 </div>
 
 <div class="detail-panel" *ngIf="vendors$ | async as vendor">
-    <h2>{{ vendor.name }}</h2>
-    <dl class="detail-list">
-        <dt>ID</dt>
-        <dd>{{ vendor.id }}</dd>
-        <dt>Specialty</dt>
-        <dd>{{ vendor.specialty }}</dd>
-        <dt>Contact number</dt>
-        <dd>{{ vendor.contactNumber }}</dd>
-        <dt>Email</dt>
-        <dd>{{ vendor.email }}</dd>
-    </dl>
+    <div *ngIf="!isEditing">
+        <h2>{{ vendor.name }}</h2>
+        <dl class="detail-list">
+            <dt>ID</dt>
+            <dd>{{ vendor.id }}</dd>
+            <dt>Specialty</dt>
+            <dd>{{ vendor.specialty }}</dd>
+            <dt>Contact number</dt>
+            <dd>{{ vendor.contactNumber }}</dd>
+            <dt>Email</dt>
+            <dd>{{ vendor.email }}</dd>
+        </dl>
+    </div>
+    <button *ngIf="userRole === 'ADMIN'" (click)="startEdit(vendor)">Edit</button>
+
+    <div class="vendor-edit-form" *ngIf="isEditing">
+        <input [(ngModel)]="editName" name="editName">
+        <select [(ngModel)]="editSpecialty" name="specialty">
+            <option value="PLUMBING">Plumbing</option>
+            <option value="ELECTRICAL">Electrical</option>
+            <option value="HVAC">HVAC</option>
+        </select> <input [(ngModel)]="editContactNumber" name="contactNumber">
+        <input [(ngModel)]="editEmail" name="email">
+        <button (click)="saveEdit()">Save</button>
+        <button (click)="isEditing = false">Cancel</button>
+    </div>
 </div>

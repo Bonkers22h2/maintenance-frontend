@@ -20,4 +20,8 @@ export class Vendors {
     createVendor(dto: any) {
         return this.http.post<any>(this.apiUrl, dto);
     }
+
+    updateVendor(id: string, dto: any) {
+        return this.http.put<any>(`${this.apiUrl}/${id}`, dto )
+    }
 }
