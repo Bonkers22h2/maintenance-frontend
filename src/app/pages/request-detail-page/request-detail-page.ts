@@ -142,6 +142,30 @@ export class RequestDetailPage {
     });
   }
 
+  markAsInProgress() {
+    this.maintenanceRequestService.updateStatus(this.requestId, 'IN_PROGRESS').subscribe({
+      next: () => {
+        this.request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
+      },
+      error: (err) => {
+        console.error('Failed to update status:', err);
+      }
+    })
+  }
+
+  markAsResolved() {
+    this.maintenanceRequestService.updateStatus(this.requestId, 'RESOLVED').subscribe({
+      next: () => {
+        this.request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
+      },
+      error: (err) => {
+        console.error('Failed to update status:', err);
+      }
+    })
+  }
+
+
+
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {

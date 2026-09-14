@@ -31,9 +31,14 @@
                 </dl>
 
                 <div class="request-actions">
-                    <button *ngIf="userRole === 'STAFF' || userRole === 'ADMIN'" (click)="markAssigned()">
+                    <button *ngIf="(userRole === 'STAFF' || userRole === 'ADMIN') && request.status === 'SUBMITED'"
+                        (click)="markAssigned()">
                         Mark as Assigned
-                    </button>
+                    </button>   
+                    <button *ngIf="(userRole === 'STAFF' || userRole ==='ADMIN') && request.status === 'ASSIGNED'"
+                        (click)="markAsInProgress()">Mark as In-Progress</button>
+                    <button *ngIf="(userRole === 'STAFF' || userRole ==='ADMIN') && request.status === 'IN_PROGRESS'"
+                        (click)="markAsResolved()">Mark as Resolved</button>
                     <button *ngIf="userRole === 'TENANT' || userRole === 'ADMIN'" (click)="startEdit(request)">
                         Edit
                     </button>
