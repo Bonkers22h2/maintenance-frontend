@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Users } from '../../services/users';
 import { CommentTriviaType } from '@angular/compiler';
+import { Vendors } from '../../services/vendors';
 
 
 @Component({
@@ -20,8 +21,11 @@ export class RequestDetailPage {
   private maintenanceRequestService = inject(MaintenanceRequest);
   private authService = inject(Auth);
   private userService = inject(Users);
+  private vendorService = inject(Vendors);
   staffUsers$ = this.userService.getStaffUsers();
+  vendors$ = this.vendorService.getVendors();
   selectedStaffId: number | null = null;
+  selectedVendorId: number | null = null;
 
   requestId = this.route.snapshot.paramMap.get('id')!;
   request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
@@ -113,6 +117,17 @@ export class RequestDetailPage {
         this.request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
       },
       error: (err) => console.error('Failed to assign staff:', err)
+    })
+  }
+
+  assignVendorToRequest() {
+    if(!this.selectedVendorId) return;
+
+    this.maintenanceRequestService.assignVendor(this.requestId, this.selectedVendorId).subscribe({
+      next: () => {
+        this.request$ = this.maintenanceRequestService.getRequestsById(this.requestId);
+      },
+      error: (err) => console.error('Failed to assign vendor:', err)
     })
   }
 

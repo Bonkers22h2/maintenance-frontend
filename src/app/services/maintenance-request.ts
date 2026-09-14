@@ -70,4 +70,8 @@ export class MaintenanceRequest {
   assignStaff(requestId: string, staffId: number) {
     return this.http.patch<any>(`${this.apiUrl}/${requestId}/assign`, { staffId });
   }
+
+  assignVendor(requestId: string, vendorId: number) {
+    return this.http.patch<any>(`${this.apiUrl}/${requestId}/assign-vendor`, {vendorId});
+  }
 }
