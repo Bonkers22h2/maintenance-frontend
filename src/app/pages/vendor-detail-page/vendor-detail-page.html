@@ -16,6 +16,7 @@
             <dd>{{ vendor.email }}</dd>
         </dl>
         <button *ngIf="userRole === 'ADMIN'" (click)="startEdit(vendor)">Edit</button>
+        <button *ngIf="userRole === 'ADMIN'" (click)="deleteVendor()">Delete</button>
     </div>
 
     <div class="vendor-edit-form" *ngIf="isEditing">

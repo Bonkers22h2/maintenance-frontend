@@ -24,4 +24,8 @@ export class Vendors {
     updateVendor(id: string, dto: any) {
         return this.http.put<any>(`${this.apiUrl}/${id}`, dto )
     }
+
+    deleteVendor(id: string) {
+        return this.http.delete<any>(`${this.apiUrl}/${id}`)
+    }
 }

@@ -50,4 +50,13 @@ export class VendorDetailPage {
       error: (err) => console.error('Failed to update vendor', err)
     })
   }
+
+  deleteVendor(){
+    this.vendorService.deleteVendor(this.vendorId).subscribe({
+      next: () => {
+        this.router.navigate(['/vendors']);
+      },
+      error: (err) => console.error('Failed to delete vendor', err)
+    })
+  }
 }
